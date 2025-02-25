@@ -9,7 +9,7 @@
     <style>
         @font-face {
             font-family: 'CustomFont';
-            src: url('your-font-file.woff2') format('woff2'); 
+            src: url('your-font-file.woff2') format('woff2');
         }
 
         body {
@@ -20,6 +20,7 @@
             background-color: #0d0d0d;
             color: #fff;
             font-family: 'CustomFont', sans-serif;
+            text-align: center;
         }
 
         .container {
@@ -43,6 +44,7 @@
             margin-bottom: 10px;
         }
 
+        /* Typewriter Effect */
         .typewriter {
             font-size: 14px;
             color: #bbb;
@@ -55,11 +57,10 @@
         }
 
         @keyframes blinkCursor {
-            50% {
-                border-color: transparent;
-            }
+            50% { border-color: transparent; }
         }
 
+        /* Social Links */
         .socials a {
             display: block;
             color: #fff;
@@ -76,6 +77,7 @@
             transform: scale(1.05);
         }
 
+        /* Expertise Icons */
         .expertise-icons img {
             width: 40px;
             margin: 5px;
@@ -88,6 +90,7 @@
             transform: scale(1.1);
         }
 
+        /* Mega Folder Section */
         .mega-container {
             display: flex;
             align-items: center;
@@ -119,7 +122,7 @@
     </style>
 </head>
 <body>
-    <div class="container" data-tilt>
+    <div class="container" id="tilt-container">
         <div class="section">
             <h1>Opv</h1>
             <p id="typewriter-text" class="typewriter"></p>
@@ -161,10 +164,7 @@
     </div>
     
     <script>
-        const texts = [
-            "WebDev-Software | Graphic designer",
-            "Discord: Opv3456"
-        ];
+        const texts = ["WebDev-Software | Graphic designer", "Discord: Opv3456"];
         let currentIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -182,12 +182,10 @@
 
             if (!isDeleting && charIndex === currentText.length + 1) {
                 isDeleting = true;
-                speed = 100;
                 setTimeout(typeEffect, 1000);
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 currentIndex = (currentIndex + 1) % texts.length;
-                speed = 100;
                 setTimeout(typeEffect, 500);
             } else {
                 setTimeout(typeEffect, speed);
@@ -196,12 +194,14 @@
 
         typeEffect();
 
-        VanillaTilt.init(document.querySelector(".container"), {
-            max: 15,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.5
-        });
+        if (!/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+            VanillaTilt.init(document.querySelector("#tilt-container"), {
+                max: 15,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.5
+            });
+        }
     </script>
 </body>
 </html>
